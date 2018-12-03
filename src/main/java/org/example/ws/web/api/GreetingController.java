@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mapa.models.Vehiculo;
+
 @RestController
 public class GreetingController {
 
@@ -52,5 +54,9 @@ public class GreetingController {
         return new ResponseEntity<Collection<Greeting>>(greetings,
                 HttpStatus.OK);
     }
+    
+    
+  
+
 
 }
