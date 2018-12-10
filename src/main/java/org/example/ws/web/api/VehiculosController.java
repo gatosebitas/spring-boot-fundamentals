@@ -1,11 +1,15 @@
 package org.example.ws.web.api;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.example.ws.model.Greeting;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,21 +17,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mapa.dao.DAOVehiculo;
 import com.mapa.models.Vehiculo;
+import com.mapa.services.Facade;
 
 @RestController
 public class VehiculosController {
 
-    private static BigInteger nextId;
-    private static Map<BigInteger, Vehiculo> vehiculoMap;
+    private static Integer nextId;
+    private static Map<Integer, Vehiculo> vehiculoMap = new HashMap<Integer, Vehiculo>();
+    
+    @Autowired
+	private static DAOVehiculo daoVehiculo = new DAOVehiculo();
 
     private static Vehiculo save(Vehiculo vehiculo) {
         if (vehiculoMap == null) {
-            vehiculoMap = new HashMap<BigInteger, Vehiculo>();
-            nextId = BigInteger.ONE;
+            vehiculoMap = new HashMap<Integer, Vehiculo>();
         }
-        vehiculo.setId(nextId);
-        nextId = nextId.add(BigInteger.ONE);
+        
         vehiculoMap.put(vehiculo.getId(), vehiculo);
         
         return vehiculo;
@@ -45,13 +52,10 @@ public class VehiculosController {
     }
 
     static {
-    	Vehiculo v;
-    	for(int i=1;i<=100;i++) {
-        v = new Vehiculo();       
-        v.setLatitud(randomWithRangeLt(1,1000));
-        v.setLongitud(randomWithRangeLn(1,1000));
-        v.setFecha("03/12/2018");
-        save(v);
+    	    	
+    	ArrayList<Vehiculo> list = daoVehiculo.listar();
+    	for (Vehiculo v: list) {
+    	    save(v);
     	}
        
     }
@@ -63,7 +67,8 @@ public class VehiculosController {
     public ResponseEntity<Collection<Vehiculo>> getVehiculos() {
 
         Collection<Vehiculo> vehiculos = vehiculoMap.values();
-
+    	//Collection<Vehiculo> vehiculos = daoVehiculo.listar();
+    	
         return new ResponseEntity<Collection<Vehiculo>>(vehiculos,
                 HttpStatus.OK);
     }

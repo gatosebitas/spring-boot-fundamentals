@@ -117,7 +117,7 @@ public class Facade {
 						Double longitud= Double.parseDouble(vehiculo.getLongitud());
 						String fecha=vehiculo.getFecha();
 						Double velocidad= Double.parseDouble(vehiculo.getVelocidad());
-						vehiculo2 = new Vehiculo(id,latitud,longitud,fecha,velocidad);
+						vehiculo2 = new Vehiculo(1,latitud,longitud,fecha,velocidad);
 						list_Vehiculo.add(vehiculo2);
 					}
 				}
@@ -143,7 +143,7 @@ public class Facade {
 						Double longitud= Double.parseDouble(punto.getLongitud());
 						String title=punto.getTitle();
 						String subtitle=punto.getSubtitle();
-						puntos_interes2 = new Punto_Interes(id,latitud,longitud,title,subtitle);
+						puntos_interes2 = new Punto_Interes(1,latitud,longitud,title,subtitle);
 						list_puntos_interes.add(puntos_interes2);
 					}
 				}

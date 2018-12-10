@@ -1,16 +1,14 @@
 package com.mapa.models;
 
-import java.math.BigInteger;
-
 public class Punto_Interes {
 	
-	private BigInteger id;
+	private int id;
     private Double latitud;
     private Double longitud;
     private String title;
     private String subtitle;
     public Punto_Interes() {}
-	public Punto_Interes(BigInteger id, Double latitud, Double longitud, String title, String subtitle) {
+	public Punto_Interes(int id, Double latitud, Double longitud, String title, String subtitle) {
 		super();
 		this.id = id;
 		this.latitud = latitud;
@@ -18,10 +16,10 @@ public class Punto_Interes {
 		this.title = title;
 		this.subtitle = subtitle;
 	}
-	public BigInteger getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(BigInteger id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Double getLatitud() {

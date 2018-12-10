@@ -1,10 +1,8 @@
 package com.mapa.models;
 
-import java.math.BigInteger;
-
 public class Vehiculo {
 
-	 private BigInteger id;
+	 private int id;
     private Double latitud;
     private Double longitud;
     private String fecha;
@@ -12,7 +10,7 @@ public class Vehiculo {
     public Vehiculo() {
     	
     }
-	public Vehiculo(BigInteger id, Double latitud, Double longitud, String fecha, Double velocidad) {
+	public Vehiculo(int id, Double latitud, Double longitud, String fecha, Double velocidad) {
 		super();
 		this.id = id;
 		this.latitud = latitud;
@@ -20,10 +18,10 @@ public class Vehiculo {
 		this.fecha = fecha;
 		this.velocidad = velocidad;
 	}
-	public BigInteger getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(BigInteger id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Double getLatitud() {
